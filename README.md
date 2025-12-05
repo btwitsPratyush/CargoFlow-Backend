@@ -1,6 +1,6 @@
-# 🚛 CargoFlow - Transport Management System (TMS) Backend
+# CargoFlow - Transport Management System (TMS) Backend
 
-## 🌟 Project Overview
+## Project Overview
 This is a robust backend system for a **Transport Management System (TMS)** designed to connect Shippers (who have goods) with Transporters (who have trucks). It handles complex logistics workflows including load posting, bidding, booking, and capacity management.
 
 The system is built to handle real-world business rules such as:
@@ -9,7 +9,7 @@ The system is built to handle real-world business rules such as:
 - **Smart Allocation:** Allowing multiple transporters to fulfill a single large load.
 - **Best Bid Calculation:** Automatically ranking bids based on price and transporter rating.
 
-## � Why CargoFlow? (Business Impact)
+## Why CargoFlow? (Business Impact)
 If you are wondering *why* this backend exists, here is the real-world problem it solves:
 
 1.  **Automation (No More Phone Calls)**
@@ -24,7 +24,7 @@ If you are wondering *why* this backend exists, here is the real-world problem i
     - *Problem:* Two managers might book the last available truck for different clients simultaneously.
     - *Solution:* **`POST /bookings`** uses **Optimistic Locking**. The system prevents race conditions, ensuring 1 truck isn't promised to 2 people.
 
-## �🛠️ Tech Stack
+## Tech Stack
 - **Language:** Java 17
 - **Framework:** Spring Boot 3.2
 - **Database:** PostgreSQL
@@ -32,7 +32,7 @@ If you are wondering *why* this backend exists, here is the real-world problem i
 - **Documentation:** Swagger / OpenAPI
 - **Build Tool:** Maven
 
-## 🚀 Key Features
+## Key Features
 1.  **Load Management**: Shippers can post loads with details like origin, destination, weight, and truck type.
 2.  **Bidding System**: Transporters can view open loads and submit bids.
     - *Constraint:* Transporters cannot bid more trucks than they own.
@@ -41,7 +41,7 @@ If you are wondering *why* this backend exists, here is the real-world problem i
     - **Multi-Truck Allocation:** A load requiring 10 trucks can be split between Transporter A (5 trucks) and Transporter B (5 trucks).
 4.  **Automated Rating**: Bids are scored using a weighted formula: `(1 / Rate) * 0.7 + (Rating / 5) * 0.3`.
 
-## ⚙️ Setup & Running Locally
+## Setup & Running Locally
 
 ### Prerequisites
 - **Java 17** (Crucial: This project requires Java 17. Java 25 is not supported yet).
@@ -74,7 +74,7 @@ If you are wondering *why* this backend exists, here is the real-world problem i
     Once running, open your browser and go to:
     👉 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
 
-## 🧪 Verification Scripts
+## Verification Scripts
 We have included shell scripts to verify core logic:
 - `./verify_capacity.sh`: Tests that transporters cannot bid beyond their capacity.
 - `./verify_multi_allocation.sh`: Tests splitting a load between multiple transporters.
@@ -101,7 +101,7 @@ src/main/java/com/cargoflow/tms
 | POST | `/api/v1/bids` | Submit a bid |
 | POST | `/api/v1/bookings` | Accept a bid & create booking |
 
-## 🎯 Conclusion (Samajhne ke liye)
+## Conclusion (Samajhne ke liye)
 In short, **CargoFlow** Shippers aur Transporters ke beech ka ek smart bridge hai.
 - **Shippers** ko 10 jagah call nahi karna padega, bas load post karo.
 - **Transporters** ko fair chance milega apni rating aur price ke basis par.
