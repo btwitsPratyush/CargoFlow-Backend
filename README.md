@@ -111,4 +111,3 @@ In short, **CargoFlow** Shippers aur Transporters ke beech ka ek smart bridge ha
 
 ## 👨‍💻 Author
 **Pratyush**
-*Passionate about building scalable backend systems and solving real-world problems.*
