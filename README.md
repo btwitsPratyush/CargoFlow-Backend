@@ -72,13 +72,20 @@ If you are wondering *why* this backend exists, here is the real-world problem i
 
 4.  **Access API Documentation**:
     Once running, open your browser and go to:
-    👉 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
+    👉 **[Swagger UI](http://localhost:8080/swagger-ui/index.html)**
+    
+    You can also import the OpenAPI specification into Postman:
+    👉 [OpenAPI JSON](http://localhost:8080/v3/api-docs)
 
 ## Verification Scripts
 We have included shell scripts to verify core logic:
 - `./verify_capacity.sh`: Tests that transporters cannot bid beyond their capacity.
 - `./verify_multi_allocation.sh`: Tests splitting a load between multiple transporters.
 - `./verify_best_bids.sh`: Tests the algorithm that ranks the best bids.
+
+## 📊 Test Coverage
+![Test Coverage Screenshot](https://via.placeholder.com/800x400?text=Test+Coverage+Screenshot+Here)
+*Note: Run `mvn test` to generate the coverage report.*
 
 ## 📂 Project Structure
 ```
@@ -89,6 +96,57 @@ src/main/java/com/cargoflow/tms
 ├── entity/          # Database Tables (Load, Bid, Booking)
 ├── dto/             # Data Transfer Objects
 └── exception/       # Global Error Handling
+```
+
+## 🗄️ Database Schema
+```mermaid
+erDiagram
+    LOAD ||--o{ BID : receives
+    LOAD ||--o{ BOOKING : has
+    TRANSPORTER ||--o{ BID : places
+    TRANSPORTER ||--o{ BOOKING : fulfills
+    TRANSPORTER ||--o{ TRUCK_CAPACITY : owns
+    BID ||--|| BOOKING : becomes
+
+    LOAD {
+        UUID loadId PK
+        string shipperId
+        string loadingCity
+        string unloadingCity
+        string productType
+        string truckType
+        int noOfTrucks
+        double weight
+        string status
+    }
+    TRANSPORTER {
+        UUID transporterId PK
+        string companyName
+        double rating
+    }
+    BID {
+        UUID bidId PK
+        UUID loadId FK
+        UUID transporterId FK
+        double proposedRate
+        int trucksOffered
+        string status
+    }
+    BOOKING {
+        UUID bookingId PK
+        UUID loadId FK
+        UUID bidId FK
+        UUID transporterId FK
+        int allocatedTrucks
+        double finalRate
+        string status
+    }
+    TRUCK_CAPACITY {
+        UUID id PK
+        UUID transporterId FK
+        string truckType
+        int totalCapacity
+    }
 ```
 
 ## 📝 API Endpoints
