@@ -84,7 +84,7 @@ We have included shell scripts to verify core logic:
 - `./verify_best_bids.sh`: Tests the algorithm that ranks the best bids.
 
 ## 📊 Test Coverage
-![Test Coverage Screenshot](https://via.placeholder.com/800x400?text=Test+Coverage+Screenshot+Here)
+![Test Coverage Screenshot](backend/coverage-report.png)
 *Note: Run `mvn test` to generate the coverage report.*
 
 ## 📂 Project Structure
